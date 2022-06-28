@@ -3,8 +3,8 @@ A tool for connecting to/switching wifi networks and or managing Ad Hoc through 
 
 ## Installation/Usage
 * git clone https://github.com/B3ND1X/nm4noobz
-* cd nmscript
-* sudo chmod +x nmscript.sh && chmod +x install.sh
+* cd nm4noobz
+* sudo chmod +x run.sh && chmod +x install.sh
 * sudo ./install.sh
 * sudo ./run.sh
 
