@@ -8,3 +8,9 @@ A tool for connecting to/switching wifi networks and or managing Ad Hoc through 
 * sudo ./install.sh
 * sudo ./nmscript.sh
 
+## Uninstall
+sudo ./uninstall.sh
+
+## Changelog 
+* v 1.0 
+- Initial release
