@@ -12,6 +12,6 @@ sleep 2
 
 apt purge udhcpd busybox 
 
-sudo rm -rf /home/*/nmscript
+sudo rm -rf /home/*/nm4noobz
 
 
