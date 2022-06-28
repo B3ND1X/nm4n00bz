@@ -51,3 +51,7 @@ sudo ./uninstall.sh
 ## Changelog 
 * v 1.0 
 - Initial release
+
+
+## Credit
+This is a somewhat forked/modified version of https://github.com/simondlevy/RPiAdHocWiFi/blob/master/README.md
