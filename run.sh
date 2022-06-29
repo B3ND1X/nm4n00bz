@@ -112,6 +112,7 @@ done
 }
 
 ScanList () {
+checkWiFiStatus
 systemctl start NetworkManager
 nmcli d wifi list
 menu
@@ -119,6 +120,7 @@ menu
 }
 
 connect () {
+checkWiFiStatus
 systemctl start NetworkManager
 echo "Enter network name: " SSID
 read SSID
@@ -129,6 +131,7 @@ sudo nmcli --ask dev wifi connect $SSID
 
 
 known () {
+checkWiFiStatus
 systemctl start NetworkManager
 nmcli c
 
@@ -137,6 +140,14 @@ nmcli c
 startADHOC () {
 echo 'system will automatically reboot in 10 seconds(Ctrl+C to cancel)'
 sleep 10
+sudo systemctl stop NetworkManager.service
+sudo systemctl disable NetworkManager.service
+sudo systemctl stop NetworkManager-wait-online.service
+sudo systemctl disable NetworkManager-wait-online.service
+sudo systemctl stop NetworkManager-dispatcher.service
+sudo systemctl disable NetworkManager-dispatcher.service
+sudo systemctl stop network-manager.service
+sudo systemctl disable network-manager.service
 cp rc.local /etc
 cp udhcpd.conf /etc
 cp dhcpcd.conf /etc
@@ -177,7 +188,6 @@ exit 0
 checkme () {
 banner
 menu
-checkWiFiStatus
 }
 
 checkme
