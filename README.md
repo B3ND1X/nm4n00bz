@@ -68,7 +68,6 @@ sudo ./uninstall.sh
 
 ## Screenshots
 ![95468CA7-A112-4695-85FC-655A51695DD8](https://user-images.githubusercontent.com/48177481/176324912-3fcf993b-7895-4797-900f-5e9ecb2635ff.png)
-![6F0CB203-2B47-4342-8D8C-098F7FB28EC7](https://user-images.githubusercontent.com/48177481/176324914-053a84ac-d030-4e3a-8fd0-6473e6fd29dc.png)
 
 
 ## Credits
