@@ -12,6 +12,6 @@ sleep 2
 
 apt purge udhcpd busybox 
 
-sudo rm -rf /home/*/nm4noobz
+sudo rm -rf /home/*/nm4n00bz
 
 
