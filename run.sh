@@ -67,7 +67,7 @@ ____¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
  
                                                              "
 echo -e "${Yellow} \n            Network Manager for noobz"
-echo -e "${Green}\n           v 1.0 By Liam Bendix (liam@liambendix.com) "
+echo -e "${Green}\n           v 1.0.1 By Liam Bendix (liam@liambendix.com) "
 }
 
 menu () {        ##### Display available options #####
