@@ -113,7 +113,7 @@ done
 
 ScanList () {
 checkWiFiStatus
-systemctl start NetworkManager
+systemctl start NetworkManager.service
 nmcli d wifi list
 menu
 
@@ -121,7 +121,7 @@ menu
 
 connect () {
 checkWiFiStatus
-systemctl start NetworkManager
+sudo systemctl start NetworkManager.service
 echo "Enter network name: " SSID
 read SSID
 sudo nmcli --ask dev wifi connect $SSID
@@ -132,7 +132,7 @@ sudo nmcli --ask dev wifi connect $SSID
 
 known () {
 checkWiFiStatus
-systemctl start NetworkManager
+systemctl start NetworkManager.service
 nmcli c
 
 }
