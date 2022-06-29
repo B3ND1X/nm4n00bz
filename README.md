@@ -1,5 +1,5 @@
 # nm4n00bz (Network Manager 4 n00bz)
-A tool for connecting to/switching wifi networks and or managing Ad Hoc through CLI . Made mostly for headless pi set up.
+A tool for connecting to/switching wifi networks and or managing Ad Hoc through CLI . 
 
 ## Installation/Usage
 * git clone https://github.com/B3ND1X/nm4noobz
