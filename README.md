@@ -63,11 +63,12 @@ Use a 128 bit key.  A 256 bit key does not seem to work.
 sudo ./uninstall.sh
 
 ## Changelog 
-* v 1.0 
+###v 1.0 
 - Initial release
 
 
-* v 1.0.1
+
+### v 1.0.1
 - Updated installer script to make a backup /etc in case of damage and you need to revert to original. 
 
 ## Screenshots
