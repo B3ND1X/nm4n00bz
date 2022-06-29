@@ -9,15 +9,21 @@ fi
 
 chmod -R 755 *
 clear
+echo "$(tput setaf 2)Making a backup in case I fuck up your system! Please wait..."
+cd /etc/
+tar -zcvf etc.tar.gz /etc
+sudo chmod -R 755 etc.tar.gz 
+clear
 echo "$(tput setaf 2)Installing everything for you! Please wait..."
 sleep 5
 clear
+cd /home/*/nm4n00bz
 sudo apt-get update 
 sudo apt-get install network-manager
 apt install udhcpd
 touch /var/lib/misc/udhcpd.leases
 clear
-echo 'Making backups of exsiting files...'
+echo 'Making more backups of exsiting files...'
 # make backups of existing files
 if [ -e /etc/rc.local ]
 then
