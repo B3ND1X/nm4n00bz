@@ -206,7 +206,10 @@ rm /etc/dhcpcd.conf.adhoc_bak
 
 nmUP
 
-echo "Please reboot now for changes to take effect."
+echo "$(tput setaf 2)System needs to reboot, restarting..."
+sleep 5
+sudo reboot
+
 exit 0
 }
 
