@@ -67,7 +67,7 @@ ____¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
  
                                                              "
 echo -e "${Yellow} \n            Network Manager for noobz"
-echo -e "${Green}\n           v 1.0.1 By Liam Bendix (liam@liambendix.com) "
+echo -e "${Green}\n           v 1.0.2 By Liam Bendix (liam@liambendix.com) "
 }
 
 menu () {        ##### Display available options #####
@@ -77,7 +77,8 @@ echo -e "      ${Red}[${Blue}2${Red}] ${Green}Connect to a WiFi"
 echo -e "      ${Red}[${Blue}3${Red}] ${Green}Show Saved Connections"
 echo -e "      ${Red}[${Blue}4${Red}] ${Green}Start Ad Hoc Network"
 echo -e "      ${Red}[${Blue}5${Red}] ${Green}Stop Ad Hoc Network"
-echo -e "      ${Red}[${Blue}6${Red}] ${Green}Exit\n\n"
+echo -e "      ${Red}[${Blue}6${Red}] ${Green}Check Status"
+echo -e "      ${Red}[${Blue}7${Red}] ${Green}Exit\n\n"
 while true; do
 echo -e "${Green}┌─[${Red}Select Option${Green}]──[${Red}~${Green}]─[${Yellow}Menu${Green}]:"
 read -p "└─────►$(tput setaf 7) " option
@@ -98,11 +99,15 @@ case $option in
     startADHOC
     exit 0
      ;;
-       5) echo -e "\n[${Green}Selected${White}] Option 5 Stop Ad Hoc Network"
+  5) echo -e "\n[${Green}Selected${White}] Option 5 Stop Ad Hoc Network"
     stopADHOC
     exit 0
      ;;
-  6) echo -e "${Red}\n\033[1mThank You for using the script,\n:)\n"
+  6) echo -e "\n[${Green}Selected${White}] Option 6 Check Device Status"
+    checkStatus
+    exit 0
+     ;;
+  7) echo -e "${Red}\n\033[1mThank You for using the script,\n:)\n"
      exit 0
      ;;
   *) echo -e "${White}[${Red}Error${White}] Please select correct option...\n"
@@ -113,7 +118,7 @@ done
 
 ScanList () {
 checkWiFiStatus
-systemctl start NetworkManager.service
+nmUP
 nmcli d wifi list
 menu
 
@@ -121,7 +126,7 @@ menu
 
 connect () {
 checkWiFiStatus
-sudo systemctl start NetworkManager.service
+nmUP
 echo "Enter network name: " SSID
 read SSID
 sudo nmcli --ask dev wifi connect $SSID
@@ -132,22 +137,38 @@ sudo nmcli --ask dev wifi connect $SSID
 
 known () {
 checkWiFiStatus
-systemctl start NetworkManager.service
+nmUP
 nmcli c
 
+}
+
+
+nmUP () {
+sudo systemctl start NetworkManager.service > /dev/null 2>&1
+sudo systemctl enable NetworkManager.service > /dev/null 2>&1
+sudo systemctl start NetworkManager-wait-online.service > /dev/null 2>&1
+sudo systemctl enable NetworkManager-wait-online.service > /dev/null 2>&1
+sudo systemctl start NetworkManager-dispatcher.service > /dev/null 2>&1
+sudo systemctl enable NetworkManager-dispatcher.service > /dev/null 2>&1
+sudo systemctl start network-manager.service > /dev/null 2>&1
+sudo systemctl enable network-manager.service > /dev/null 2>&1
+}
+
+nmDOWN () {
+sudo systemctl stop NetworkManager.service > /dev/null 2>&1
+sudo systemctl disable NetworkManager.service > /dev/null 2>&1
+sudo systemctl stop NetworkManager-wait-online.service > /dev/null 2>&1
+sudo systemctl disable NetworkManager-wait-online.service > /dev/null 2>&1
+sudo systemctl stop NetworkManager-dispatcher.service > /dev/null 2>&1
+sudo systemctl disable NetworkManager-dispatcher.service > /dev/null 2>&1
+sudo systemctl stop network-manager.service > /dev/null 2>&1
+sudo systemctl disable network-manager.service > /dev/null 2>&1
 }
 
 startADHOC () {
 echo 'system will automatically reboot in 10 seconds(Ctrl+C to cancel)'
 sleep 10
-sudo systemctl stop NetworkManager.service
-sudo systemctl disable NetworkManager.service
-sudo systemctl stop NetworkManager-wait-online.service
-sudo systemctl disable NetworkManager-wait-online.service
-sudo systemctl stop NetworkManager-dispatcher.service
-sudo systemctl disable NetworkManager-dispatcher.service
-sudo systemctl stop network-manager.service
-sudo systemctl disable network-manager.service
+nmDOWN
 cp rc.local /etc
 cp udhcpd.conf /etc
 cp dhcpcd.conf /etc
@@ -179,9 +200,33 @@ else
 fi
 rm /etc/dhcpcd.conf.adhoc_bak
 
+nmUP
+
 echo "Please reboot now for changes to take effect."
 exit 0
 }
+
+
+checkStatus () {
+clear
+echo "WiFi Network Currently Connected:"
+iwgetid
+echo "Current IP:"
+hostname -I | awk '{print $1}'
+#nmcli -p device show
+#systemctl status NetworkManager | awk '{print $2}'
+#systemctl status dhcpcd.service | awk '{print $2}'
+echo 'NetworkManager Status:'
+systemctl status NetworkManager | grep Active | grep -v grep
+echo 'DHCPCD Status:'
+systemctl status dhcpcd.service | grep Active | grep -v grep
+
+
+}
+
+
+
+
 
 ############# End of tool ########################################################
 
