@@ -67,7 +67,7 @@ ____¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
  
                                                              "
 echo -e "${Yellow} \n            Network Manager for noobz"
-echo -e "${Green}\n           v 1.0.2 By Liam Bendix (liam@liambendix.com) "
+echo -e "${Green}\n           v 1.0.3 By Liam Bendix (liam@liambendix.com) "
 }
 
 menu () {        ##### Display available options #####
@@ -144,6 +144,8 @@ nmcli c
 
 
 nmUP () {
+sudo systemctl stop dhcpcd > /dev/null 2>&1
+/etc/init.d/dhcp stop > /dev/null 2>&1
 sudo systemctl start NetworkManager.service > /dev/null 2>&1
 sudo systemctl enable NetworkManager.service > /dev/null 2>&1
 sudo systemctl start NetworkManager-wait-online.service > /dev/null 2>&1
@@ -163,6 +165,8 @@ sudo systemctl stop NetworkManager-dispatcher.service > /dev/null 2>&1
 sudo systemctl disable NetworkManager-dispatcher.service > /dev/null 2>&1
 sudo systemctl stop network-manager.service > /dev/null 2>&1
 sudo systemctl disable network-manager.service > /dev/null 2>&1
+sudo systemctl start dhcpcd > /dev/null 2>&1
+/etc/init.d/dhcp start > /dev/null 2>&1
 }
 
 startADHOC () {
@@ -209,7 +213,8 @@ exit 0
 
 checkStatus () {
 clear
-echo "WiFi Network Currently Connected:"
+echo -e "${Yellow} \n            STATUS CHECK:"
+echo -e "${Green} \n WiFi Network Currently Connected:"
 iwgetid
 echo "Current IP:"
 hostname -I | awk '{print $1}'
