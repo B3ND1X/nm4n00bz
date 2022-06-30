@@ -10,9 +10,9 @@ fi
 chmod -R 755 *
 clear
 echo "$(tput setaf 2)Making a backup in case I fuck up your system! Please wait..."
+sleep 3
 cd /etc/
 tar -zcvf etc.tar.gz /etc
-sudo chmod -R 755 etc.tar.gz 
 clear
 echo "$(tput setaf 2)Installing everything for you! Please wait..."
 sleep 5
