@@ -76,7 +76,7 @@ sudo ./uninstall.sh
 ![265B353B-1E0F-4613-9E1C-C13061F20856](https://user-images.githubusercontent.com/48177481/176330723-4a4a37b1-14de-468a-954f-0e985e20daa0.jpeg)
 
 ## Troubleshoot
-- If for any reason you run into problems use ./uninstall it should revert any changed made by nm4n00bz.
+- If for any reason you run into problems use ./uninstall it should revert any changes made by nm4n00bz.
 
 - If however, this did not fix your issue. nm4n00bz makes a backup of your /etc folder before installation. To revert your files to their original state before installation, please put your SD card from your Pi to your PC. Then open the rootfs of your Pi and open /etc inside the root directory. Then copy /etc/etc.tar.gz, and paste it in root directory. Then delete /etc from root and unzip etc.tar.gz in the root directory. After delete etc.tar.gz from your root directory. Pop your SD card into your Pi and power on the device. Everything should be back to normal. (PLEASE NOTE: by doing this, any changes you made to /etc after installation of nm4n00bz will revert back to before installation, not just for nm4n00bz but any changes made. Proceed with caution.) 
 
