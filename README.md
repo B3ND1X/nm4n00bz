@@ -71,6 +71,15 @@ sudo ./uninstall.sh
 ### v 1.0.1
 - Updated installer script to make a backup /etc in case of damage and you need to revert to original. 
 
+
+### v 1.0.2
+- Bug fixes
+- Code clean up
+
+
+### v 1.0.3
+- Shows if you are connected to wifi, if so what network and what ip you have. Also displays if NetworkManager.service is active and if dhcpcd.service is active or not.
+
 ## Screenshots
 ![95468CA7-A112-4695-85FC-655A51695DD8](https://user-images.githubusercontent.com/48177481/176324912-3fcf993b-7895-4797-900f-5e9ecb2635ff.png)
 ![265B353B-1E0F-4613-9E1C-C13061F20856](https://user-images.githubusercontent.com/48177481/176330723-4a4a37b1-14de-468a-954f-0e985e20daa0.jpeg)
