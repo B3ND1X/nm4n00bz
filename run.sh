@@ -215,19 +215,29 @@ exit 0
 
 
 checkStatus () {
+
+
 clear
 echo -e "${Yellow} \n            STATUS CHECK:"
-echo -e "${Green} \n WiFi Network Currently Connected:"
-iwgetid
+echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
+
+if [ $? -eq 0 ]; then
+    echo -e "${Green} \n WiFi Connection Established:"
+    iwgetid
 echo "Current IP:"
 hostname -I | awk '{print $1}'
-#nmcli -p device show
-#systemctl status NetworkManager | awk '{print $2}'
-#systemctl status dhcpcd.service | awk '{print $2}'
 echo 'NetworkManager Status:'
 systemctl status NetworkManager | grep Active | grep -v grep
 echo 'DHCPCD Status:'
 systemctl status dhcpcd.service | grep Active | grep -v grep
+else
+ echo -e "${Red} \n No WiFi Connection:"
+    echo 'NetworkManager Status:'
+systemctl status NetworkManager | grep Active | grep -v grep
+echo 'DHCPCD Status:'
+systemctl status dhcpcd.service | grep Active | grep -v grep
+
+fi
 
 
 }
